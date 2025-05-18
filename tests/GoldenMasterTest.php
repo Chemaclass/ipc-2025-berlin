@@ -6,7 +6,7 @@ namespace Tests;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-final class GameTest extends TestCase
+final class GoldenMasterTest extends TestCase
 {
     #[DataProvider('providerGameRunner')]
     public function test_game_runner(int $seed): void
