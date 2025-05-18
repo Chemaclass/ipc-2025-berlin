@@ -21,7 +21,7 @@ final class GameTest extends TestCase
 
     public static function providerGameRunner(): iterable
     {
-        foreach (range(1, 3) as $seed) {
+        foreach (range(1, 100) as $seed) {
             $filename = sprintf(__DIR__.'/tmp/runner-%s.txt', $seed);
             if (!file_exists($filename)) {
                 self::createSnapshot($seed, $filename);
