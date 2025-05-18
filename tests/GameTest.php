@@ -3,21 +3,29 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class GameTest extends TestCase
 {
-    public function test_game_runner(): void
+    #[DataProvider('providerGameRunner')]
+    public function test_game_runner(int $seed, string $expected): void
     {
-        srand(1);
+        srand($seed);
         ob_start();
-        require __DIR__ . '/../GameRunner.php';
+        require __DIR__.'/../GameRunner.php';
         $output = ob_get_clean();
 
-        self::assertEquals($this->exampleResult1(), $output);
+        self::assertEquals($expected, $output);
     }
 
-    private function exampleResult1(): string
+    public static function providerGameRunner(): iterable
+    {
+        yield [1, self::exampleResult1()];
+        yield [2, self::exampleResult2()];
+    }
+
+    private static function exampleResult1(): string
     {
         return <<<TXT
 Chet was added
@@ -142,17 +150,7 @@ Chet now has 6 Gold Coins.
 TXT;
     }
 
-    public function test_game_runner_2(): void
-    {
-        srand(2);
-        ob_start();
-        require __DIR__ . '/../GameRunner.php';
-        $output = ob_get_clean();
-
-        self::assertEquals($this->exampleResult2(), $output);
-    }
-
-    private function exampleResult2(): string
+    private static function exampleResult2(): string
     {
         return <<<TXT
 Chet was added
