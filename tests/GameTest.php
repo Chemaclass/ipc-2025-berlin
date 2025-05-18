@@ -9,36 +9,30 @@ use PHPUnit\Framework\TestCase;
 final class GameTest extends TestCase
 {
     #[DataProvider('providerGameRunner')]
-    public function test_game_runner(int $seed, string $expected): void
+    public function test_game_runner(int $seed): void
     {
-        srand($seed);
-        ob_start();
-        require __DIR__.'/../GameRunner.php';
-        $output = ob_get_clean();
+        $filename = sprintf(__DIR__.'/tmp/runner-%s.txt', $seed);
+        if (!file_exists($filename)) {
+            file_put_contents($filename, $this->generateOutput($seed));
+        }
+        $expected = file_get_contents($filename);
 
-        self::assertSame($expected, $output);
+        self::assertSame($expected, $this->generateOutput($seed));
     }
 
     public static function providerGameRunner(): iterable
     {
         foreach (range(1, 100) as $seed) {
-            $filename = sprintf(__DIR__.'/tmp/runner-%s.txt', $seed);
-            if (!file_exists($filename)) {
-                self::createSnapshot($seed, $filename);
-            }
-
-            $content = file_get_contents($filename);
-
-            yield [$seed, $content];
+            yield [$seed];
         }
     }
 
-    private static function createSnapshot(int $seed, string $filename): void
+    private function generateOutput(int $seed): string
     {
         srand($seed);
         ob_start();
         require __DIR__.'/../GameRunner.php';
-        $content = ob_get_clean();
-        file_put_contents($filename, $content);
+
+        return (string) ob_get_clean();
     }
 }
