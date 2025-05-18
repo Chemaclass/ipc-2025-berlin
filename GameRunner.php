@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__.'/Game.php';
+use Ipc2025Berlin\Game;
 
 $notAWinner;
 

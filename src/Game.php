@@ -1,4 +1,7 @@
 <?php
+
+namespace Ipc2025Berlin;
+
 function echoln($string) {
   echo $string."\n";
 }
