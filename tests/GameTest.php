@@ -16,7 +16,7 @@ final class GameTest extends TestCase
         require __DIR__.'/../GameRunner.php';
         $output = ob_get_clean();
 
-        self::assertEquals($expected, $output);
+        self::assertSame($expected, $output);
     }
 
     public static function providerGameRunner(): iterable

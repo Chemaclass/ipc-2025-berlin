@@ -36,15 +36,11 @@ class Game {
 			array_push($this->popQuestions, "Pop Question " . $i);
 			array_push($this->scienceQuestions, ("Science Question " . $i));
 			array_push($this->sportsQuestions, ("Sports Question " . $i));
-			array_push($this->rockQuestions, $this->createRockQuestion($i));
+			array_push($this->rockQuestions, "Rock Question ".$i);
     	}
     }
 
-	function createRockQuestion($index){
-		return "Rock Question " . $index;
-	}
-
-	function isPlayable() {
+    function isPlayable() {
 		return ($this->howManyPlayers() >= 2);
 	}
 
@@ -149,7 +145,7 @@ class Game {
 
 		} else {
 
-			echoln("Answer was corrent!!!!");
+			echoln("Answer was correct!!!!");
 		$this->purses[$this->currentPlayer]++;
 			echoln($this->players[$this->currentPlayer]
 					. " now has "
