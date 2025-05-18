@@ -1,0 +1,25 @@
+{
+    "name": "chema/ipc-2025-berlin",
+    "autoload": {
+        "psr-4": {
+            "Ipc2025Berlin\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Chemaclass",
+            "email": "chemaclass@outlook.es"
+        }
+    ],
+    "require": {
+        "php": ">=8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.5"
+    }
+}
